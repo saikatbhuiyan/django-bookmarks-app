@@ -25,8 +25,7 @@ SECRET_KEY = 'sq&ir3jnz+ks5zq5r_(5p8j-%@f^fe)an=!wclkxdqqm#845$y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -38,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party
+    'django_extensions',
+    'social_django',
+    'easy_thumbnails',
+    # Local
     'account.apps.AccountConfig',
+    'images.apps.ImagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +135,11 @@ STATICFILES_DIRS = [
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
